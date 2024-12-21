@@ -1,0 +1,30 @@
+stages:
+  preprocess:
+    cmd: python src/data_preprocessing.py
+    deps:
+    - data/raw/data.csv
+    - src/data_preprocessing.py
+    params:
+    - preprocess.input
+    - preprocess.output
+    outs:
+    - data/preprocessed/data.csv
+    - transformers/scaler.pkl
+  train:
+    cmd: python src/model_training.py
+    deps:
+    - data/preprocessed/data.csv
+    - src/model_training.py
+    params:
+    - train.model
+    outs:
+    - models/model.pkl
+  predict:
+    cmd: python src/model_prediction.py
+    deps:
+    - data/raw/test_data.csv
+    - models/model.pkl
+    - src/model_prediction.py
+    - transformers/scaler.pkl
+    outs:
+    - data/prediction/prediction.csv

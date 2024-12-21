@@ -1,0 +1,3 @@
+['remote "origin"']
+    url = s3://dvc
+    endpointurl = https://dagshub.com/siddmirjank2696/Diabetes-Detection-MLflow.s3

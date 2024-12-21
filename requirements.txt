@@ -1,0 +1,8 @@
+numpy
+pandas
+matplotlib
+scikit-learn
+dvc
+dvc-s3
+mlflow
+xgboost

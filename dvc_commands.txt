@@ -1,0 +1,11 @@
+# Data Preprocessing Pipeline
+dvc stage add -n preprocess -p preprocess.input,preprocess.output -d src/data_preprocessing.py -d data/raw/data.csv \
+-o data/preprocessed/data.csv -o transformers/scaler.pkl python src/data_preprocessing.py
+
+# Model Training Pipeline
+dvc stage add -n train -p train.model,train.criterion,train.max_features,train.n_estimators -d src/model_training.py -d data/preprocessed/data.csv \
+-o models/model.pkl python src/model_training.py
+
+# Model Prediction Pipeline
+dvc stage add -n predict -d src/model_prediction.py -d data/raw/test_data.csv -d models/model.pkl -d transformers/scaler.pkl \
+-o data/prediction/prediction.csv python src/model_prediction.py

@@ -1,0 +1,15 @@
+preprocess:
+  input: "data/raw/data.csv"
+  output: "data/preprocessed/data.csv"
+  transformers: "transformers/scaler.pkl"
+train:
+  input: "data/preprocessed/data.csv"
+  output: "models/model.pkl"
+  model: "models/model.pkl"
+  random_state: 42
+  experiment_name: "Random Forest Hyperparameter Tracking"
+test:
+  input: "data/raw/test_data.csv"
+  model: "models/model.pkl"
+  transformers: "transformers/scaler.pkl"
+  output: "data/prediction/prediction.csv"
